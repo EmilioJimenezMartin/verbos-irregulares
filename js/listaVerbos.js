@@ -145,3 +145,7 @@ var verbos = [
     ["wring","wrung","wrung","torcer"],
     ["write","wrote","written","escribir"]
     ];
+
+    function devolverVerbos() {
+        return verbos;
+    }
