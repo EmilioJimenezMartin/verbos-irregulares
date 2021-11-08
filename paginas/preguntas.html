@@ -5,47 +5,66 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"  crossorigin="anonymous">
+    <script id="listado" type="text/javascript" src="../js/listaVerbos.js"></script>
+    <script>
+        var listaTotal = devolverVerbos();
+        var lista = [];
+        var nivel;
+        var paso = 0;
+        var tabla;
+        var posicionInput;
+
+        window.onload = function() {
+
+            nivel = new URLSearchParams(location.search).get('nivel');
+            console.log(nivel, 'nivel')
+            document.getElementById("titulo").innerHTML = "Nivel: " + nivel;
+            tabla = document.getElementById("tabla");
+            console.log(nivel, 'nivel')
+            do {
+                const i = Math.floor(Math.random() * listaTotal.length) + 1;
+                if (i !== undefined && listaTotal[i] !== undefined) {
+                    lista.push(listaTotal[i]);
+                    listaTotal.splice(i, 1)
+                }
+            }  
+            while (lista.length < nivel);
+            obtenerPregunta();
+        }
+
+        function obtenerPregunta() {
+            posicionInput = posicionAleatoria() - 1;
+            console.log(posicionInput, 'posicion del input')
+            
+        }
+        
+    
+        function comprobar() {
+            console.log('escucha el click')
+            paso++;
+            obtenerPregunta();
+        }
+    
+        function volver() {
+            window.location = '../index.html';
+        }
+
+        function posicionAleatoria() {
+            return Math.floor(Math.random() * 3) + 1;
+        }
+    </script>
 </head>
-<script id="listado" type="text/javascript" src="../js/listaVerbos.js"></script>
-<script>
-    var listaTotal = devolverVerbos();
-    var lista = [];
-    var nivel;
 
-    window.addEventListener('load', inicio())
-    function inicio() {
-        //lista = document.getElementById('listado')
-        console.log(listaTotal, 'lista')
-        nivel = new URLSearchParams(location.search).get('nivel');
-        console.log(nivel, 'nivel')
-        //
-
-        //
-        do {
-            const i = Math.floor(Math.random() * listaTotal.length) + 1;
-            if (i !== undefined && listaTotal[i] !== undefined) {
-                lista.push(listaTotal[i]);
-                listaTotal.splice(i, 1)
-            }
-        }  
-        while (lista.length < nivel);
-        console.log(lista, 'lista')
-        //
-    }
-
-    function comprobar() {}
-
-    function volver() {
-        window.location = '../index.html';
-    }
-</script>
 <body>
-    <p>Segunda pagina</p>
     <div class="contenedor">
+        <div class="header">
+            <p id="titulo">Nivel</p>
+        </div>
         <div class="btn-container">
             <button type="button" class="btn btn-primary" onclick = "comprobar()">Comprueba</button>
             <button type="button" class="btn btn-primary" onclick = "volver()">Cambia de nivel</button>
         </div>
+        <div class="tabla"></div>
     </div>
 </body>
 </html>

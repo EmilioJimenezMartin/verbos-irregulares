@@ -5,20 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"  crossorigin="anonymous">
+    <script id="listado" type="text/javascript" src="./js/listaVerbos.js"></script>
+    <script>
+        function seleccionarNivel(cantidad) {
+            window.location = './paginas/preguntas.html?nivel=' + cantidad;
+        }
+    </script>
 </head>
-<script id="listado" type="text/javascript" src="./js/listaVerbos.js"></script>
-<script>
-    //var lista = devolverVerbos();
-    window.addEventListener('load', inicio())
-    function inicio() {
-        //lista = document.getElementById('listado')
-        //console.log(lista, 'lista')
-        // 
-    }
-    function seleccionarNivel(cantidad) {
-        window.location = './paginas/preguntas.html?nivel=' + cantidad;
-    }
-</script>
+
 <body>
       <div class="contenedor">
         <div class="header">
