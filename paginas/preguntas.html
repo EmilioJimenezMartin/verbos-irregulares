@@ -17,10 +17,8 @@
         window.onload = function() {
 
             nivel = new URLSearchParams(location.search).get('nivel');
-            console.log(nivel, 'nivel')
             document.getElementById("titulo").innerHTML = "Nivel: " + nivel;
             tabla = document.getElementById("tabla");
-            console.log(nivel, 'nivel')
             do {
                 const i = Math.floor(Math.random() * listaTotal.length) + 1;
                 if (i !== undefined && listaTotal[i] !== undefined) {
@@ -35,12 +33,44 @@
         function obtenerPregunta() {
             posicionInput = posicionAleatoria() - 1;
             console.log(posicionInput, 'posicion del input')
-            
+            var celda0 = document.getElementById("celda0");
+            var celda1 = document.getElementById("celda1");
+            var celda2 = document.getElementById("celda2");
+
+            var inp = document.createElement("input");
+            var txt1 = document.createElement("p");
+            var txt2 = document.createElement("p");
+
+            var respuesta = document.getElementById("respuesta");
+            respuesta.innerHTML = listaTotal[paso][3];
+
+            if (posicionInput === 0) {
+                celda0.appendChild(inp);
+                txt1.innerHTML = listaTotal[paso][1];
+                celda1.appendChild(txt1);
+                txt2.innerHTML = listaTotal[paso][2];
+                celda2.appendChild(txt2);
+            }
+            if (posicionInput === 1) {
+                celda1.appendChild(inp);
+                txt1.innerHTML = listaTotal[paso][1];
+                celda0.appendChild(txt1);
+                txt2.innerHTML = listaTotal[paso][2];
+                celda2.appendChild(txt2);
+            }
+            if (posicionInput === 2) {
+                celda2.appendChild(inp);
+                txt1.innerHTML = listaTotal[paso][1];
+                celda0.appendChild(txt1);
+                txt2.innerHTML = listaTotal[paso][2];
+                celda1.appendChild(txt2);
+            }
         }
         
     
         function comprobar() {
-            console.log('escucha el click')
+            console.log(listaTotal[nivel], 'pregunta');
+            //console.log(posicionInput, 'posicionInput')
             paso++;
             obtenerPregunta();
         }
@@ -64,7 +94,17 @@
             <button type="button" class="btn btn-primary" onclick = "comprobar()">Comprueba</button>
             <button type="button" class="btn btn-primary" onclick = "volver()">Cambia de nivel</button>
         </div>
-        <div class="tabla"></div>
+        <div class="tabla-container">
+            <div>
+                <p id="respuesta"></p>
+            </div>
+            <div class="tabla row">
+                <div id="celda0" class="col-4"></div>
+                <div id="celda1" class="col-4"></div>
+                <div id="celda2" class="col-4"></div>
+            </div>
+        </div>
+        
     </div>
 </body>
 </html>
