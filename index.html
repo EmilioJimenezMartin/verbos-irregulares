@@ -13,6 +13,10 @@
     function inicio() {
         //lista = document.getElementById('listado')
         console.log(lista, 'lista')
+        // 
+    }
+    function seleccionarNivel(cantidad) {
+        window.location = './paginas/preguntas.html#?nivel=' + cantidad;
     }
 </script>
 <body>
@@ -21,21 +25,24 @@
         <button type="button" class="btn btn-secondary">Middle</button>
         <button type="button" class="btn btn-secondary">Right</button>
       </div>-->
-      <div class="header">
-          <p>Lista de verbos irregulares</p>
+      <div class="container">
+        <div class="header">
+            <p>Lista de verbos irregulares</p>
+        </div>
+        <div class="nivel-container">
+            <div class="titulo">
+                <p>Elige el numero de verbos</p>
+            </div>
+          <button type="button" class="btn btn-primary" onclick = "seleccionarNivel(20)">20</button>
+          <button type="button" class="btn btn-primary" onclick = "seleccionarNivel(30)">30</button>
+          <button type="button" class="btn btn-primary" onclick = "seleccionarNivel(40)">40</button>
+          <button type="button" class="btn btn-primary" onclick = "seleccionarNivel(50)">50</button>
+          <button type="button" class="btn btn-primary" onclick = "seleccionarNivel(60)">60</button>
+          <button type="button" class="btn btn-primary" onclick = "seleccionarNivel(70)">70</button>
+          <button type="button" class="btn btn-primary" onclick = "seleccionarNivel(80)">80</button>
+          <button type="button" class="btn btn-primary" onclick = "seleccionarNivel(140)">140</button>
+        </div>
       </div>
-      <div class="nivel-container">
-          <div class="titulo">
-              <p>Elige el numero de verbos</p>
-          </div>
-        <button type="button" class="btn btn-primary">20</button>
-        <button type="button" class="btn btn-primary">30</button>
-        <button type="button" class="btn btn-primary">40</button>
-        <button type="button" class="btn btn-primary">50</button>
-        <button type="button" class="btn btn-primary">60</button>
-        <button type="button" class="btn btn-primary">70</button>
-        <button type="button" class="btn btn-primary">80</button>
-        <button type="button" class="btn btn-primary">140</button>
-      </div>
+     
 </body>
 </html>
