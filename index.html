@@ -8,24 +8,19 @@
 </head>
 <script id="listado" type="text/javascript" src="./js/listaVerbos.js"></script>
 <script>
-    var lista = devolverVerbos();
+    //var lista = devolverVerbos();
     window.addEventListener('load', inicio())
     function inicio() {
         //lista = document.getElementById('listado')
-        console.log(lista, 'lista')
+        //console.log(lista, 'lista')
         // 
     }
     function seleccionarNivel(cantidad) {
-        window.location = './paginas/preguntas.html#?nivel=' + cantidad;
+        window.location = './paginas/preguntas.html?nivel=' + cantidad;
     }
 </script>
 <body>
-    <!--<div class="btn-group" role="group" aria-label="Basic example">
-        <button type="button" class="btn btn-secondary">Left</button>
-        <button type="button" class="btn btn-secondary">Middle</button>
-        <button type="button" class="btn btn-secondary">Right</button>
-      </div>-->
-      <div class="container">
+      <div class="contenedor">
         <div class="header">
             <p>Lista de verbos irregulares</p>
         </div>
