@@ -1,2 +1,0 @@
-# verbos-irregulares
-# verbos-irregulares
