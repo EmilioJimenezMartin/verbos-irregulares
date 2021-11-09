@@ -28,7 +28,6 @@
         }
 
         function obtenerNivel(valor) {
-            console.log("entra en obtener nivel");
             var listaTotal = devolverVerbos();
             lista = [];
             if (valor == null) {
@@ -53,7 +52,6 @@
         }
 
         function obtenerPregunta() {
-            //
             var celda0 = document.getElementById("celda0");
             if (celda0.childNodes[0] != null && celda0.childNodes[0] != undefined) {
                 celda0.removeChild(celda0.childNodes[0]);
@@ -62,7 +60,6 @@
                 var celda2 = document.getElementById("celda2");
                 celda2.removeChild(celda2.childNodes[0]);
             }
-            //
             posicionInput = posicionAleatoria() - 1;
             var celda0 = document.getElementById("celda0");
             var celda1 = document.getElementById("celda1");
@@ -100,43 +97,54 @@
                 celda1.appendChild(txt2);
             }
         }
-        
     
         function comprobar() {
-            console.log(lista[paso], 'pregunta');
-            console.log(lista[paso][posicionInput], 'listaTotal[paso][posicionInput]')
             var value = document.getElementById("inp").value;
             if (value.toLowerCase() == lista[paso][posicionInput]) {
-                console.log(true);
                 preguntasAcertadas++;
-                if (preguntasAcertadas == 10) {
-                    estrellasAcertadas++;
-                    localStorage.setItem("acertadas", estrellasAcertadas);
-                }
+                cambiarAspectoBoton(true);
             } else {
                 preguntasAcertadas = 0;
-                console.log(false);
+                cambiarAspectoBoton(false);
             }
-
-            console.log(value, 'valor de input')
-            /*var celda0 = document.getElementById("celda0");
-            celda0.removeChild(celda0.childNodes[0]);
-            var celda1 = document.getElementById("celda1");
-            celda1.removeChild(celda1.childNodes[0]);
-            var celda2 = document.getElementById("celda2");
-            celda2.removeChild(celda2.childNodes[0]);*/
             paso++;
+
+            if (paso == lista.length && preguntasAcertadas == paso) {
+                estrellasAcertadas++;
+                localStorage.setItem("acertadas", estrellasAcertadas);
+            }
             obtenerPregunta();
         }
     
         function cambioDeNivel() {
-            //window.location = '../index.html';
             var nivelDiv = document.getElementById("elegirNivel");
             nivelDiv.removeAttribute("class", "none");
         }
 
         function posicionAleatoria() {
             return Math.floor(Math.random() * 3) + 1;
+        }
+
+        function cambiarAspectoBoton(acierto) {
+            var btnCheck = document.getElementById("comprobar");
+            btnCheck.removeAttribute("class", "btn btn-primary");
+            if (acierto) {
+                btnCheck.setAttribute("class", "btn btn-success");
+                btnCheck.innerHTML = "BIEN";
+                setTimeout(function(){ 
+                    btnCheck.removeAttribute("class", "btn btn-success");
+                    btnCheck.setAttribute("class", "btn btn-primary");
+                    btnCheck.innerHTML = "Comprueba";
+                 }, 3000);
+            } else {
+                btnCheck.setAttribute("class", "btn btn-danger");
+                btnCheck.innerHTML = "MAL";
+                setTimeout(function(){ 
+                    btnCheck.removeAttribute("class", "btn btn-danger");
+                    btnCheck.setAttribute("class", "btn btn-primary");
+                    btnCheck.innerHTML = "Comprueba";
+                 }, 3000);
+            }
         }
     </script>
 
@@ -161,7 +169,7 @@
         </div>
         -->
         <div class="btn-container">
-            <button type="button" class="btn btn-primary" onclick = "comprobar()">Comprueba</button>
+            <button type="button" class="btn btn-primary" onclick = "comprobar()" id="comprobar">Comprueba</button>
             <button type="button" class="btn btn-primary" onclick = "cambioDeNivel()">Cambia de nivel</button>
         </div>
         <div class="tabla-container">
