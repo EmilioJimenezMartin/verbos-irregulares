@@ -13,8 +13,16 @@
         var paso = 0;
         var tabla;
         var posicionInput;
+        var estrellasAcertadas;
+        var preguntasAcertadas;
 
         window.onload = function() {
+            preguntasAcertadas = 0;
+            estrellasAcertadas = localStorage.getItem("acertadas");
+            
+            if (estrellasAcertadas == null || estrellasAcertadas == undefined) {
+                estrellasAcertadas = 0;
+            }
 
             nivel = new URLSearchParams(location.search).get('nivel');
             document.getElementById("titulo").innerHTML = "Nivel: " + nivel;
@@ -32,7 +40,6 @@
 
         function obtenerPregunta() {
             posicionInput = posicionAleatoria() - 1;
-            //console.log(posicionInput, 'posicion del input')
             var celda0 = document.getElementById("celda0");
             var celda1 = document.getElementById("celda1");
             var celda2 = document.getElementById("celda2");
@@ -46,10 +53,6 @@
 
             var respuesta = document.getElementById("respuesta");
             respuesta.innerHTML = lista[paso][3];
-
-            //console.log(posicionInput, 'lugar donde va el input')
-            //console.log(listaTotal[paso], 'listaTotal[paso]')
-            //console.log(listaTotal[paso][posicionInput], 'pregunta que oculto')
 
             if (posicionInput == 0) {
                 celda0.appendChild(inp);
@@ -81,6 +84,11 @@
             var value = document.getElementById("inp").value;
             if (value.toLowerCase() == lista[paso][posicionInput]) {
                 console.log(true);
+                preguntasAcertadas++;
+                if (preguntasAcertadas == 10) {
+                    estrellasAcertadas++;
+                    localStorage.setItem("acertadas", estrellasAcertadas);
+                }
             } else {
                 console.log(false);
             }
@@ -103,6 +111,7 @@
             return Math.floor(Math.random() * 3) + 1;
         }
     </script>
+    
 </head>
 
 <body>
@@ -110,6 +119,13 @@
         <div class="header">
             <p id="titulo">Nivel</p>
         </div>
+        <!--
+        <div class="contenedor-estrellas">
+            <div class="stars-outer">
+                <div class="stars-inner"></div>
+              </div>
+        </div>
+        -->
         <div class="btn-container">
             <button type="button" class="btn btn-primary" onclick = "comprobar()">Comprueba</button>
             <button type="button" class="btn btn-primary" onclick = "volver()">Cambia de nivel</button>
