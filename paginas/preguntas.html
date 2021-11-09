@@ -15,6 +15,7 @@
         var estrellasAcertadas;
         var preguntasAcertadas;
         var elegirNivel;
+        var listaTotal = devolverVerbos();
 
         window.onload = function() {
             preguntasAcertadas = 0;
@@ -28,7 +29,7 @@
         }
 
         function obtenerNivel(valor) {
-            var listaTotal = devolverVerbos();
+            var copiaListaTotal = Object.assign([], listaTotal);
             lista = [];
             if (valor == null) {
                 nivel = new URLSearchParams(location.search).get('nivel');
@@ -39,10 +40,10 @@
             document.getElementById("titulo").innerHTML = "Nivel: " + nivel;
             tabla = document.getElementById("tabla");
             do {
-                const i = Math.floor(Math.random() * listaTotal.length) + 1;
-                if (i != undefined && listaTotal[i] != undefined) {
-                    lista.push(listaTotal[i]);
-                    listaTotal.splice(i, 1);
+                const i = Math.floor(Math.random() * copiaListaTotal.length) + 1;
+                if (i != undefined && copiaListaTotal[i] != undefined) {
+                    lista.push(copiaListaTotal[i]);
+                    copiaListaTotal.splice(i, 1);
                 }
             }  
             while (lista.length < nivel);
