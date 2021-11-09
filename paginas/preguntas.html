@@ -7,38 +7,62 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"  crossorigin="anonymous">
     <script id="listado" type="text/javascript" src="../js/listaVerbos.js"></script>
     <script>
-        var listaTotal = devolverVerbos();
-        var lista = [];
+        var lista;
         var nivel;
         var paso = 0;
         var tabla;
         var posicionInput;
         var estrellasAcertadas;
         var preguntasAcertadas;
+        var elegirNivel;
 
         window.onload = function() {
             preguntasAcertadas = 0;
             estrellasAcertadas = localStorage.getItem("acertadas");
+            elegirNivel = document.getElementById("elegirNivel");
             
             if (estrellasAcertadas == null || estrellasAcertadas == undefined) {
                 estrellasAcertadas = 0;
             }
+            obtenerNivel(null);
+        }
 
-            nivel = new URLSearchParams(location.search).get('nivel');
+        function obtenerNivel(valor) {
+            console.log("entra en obtener nivel");
+            var listaTotal = devolverVerbos();
+            lista = [];
+            if (valor == null) {
+                nivel = new URLSearchParams(location.search).get('nivel');
+            } else {
+                nivel = valor;
+            }
+            
             document.getElementById("titulo").innerHTML = "Nivel: " + nivel;
             tabla = document.getElementById("tabla");
             do {
                 const i = Math.floor(Math.random() * listaTotal.length) + 1;
                 if (i != undefined && listaTotal[i] != undefined) {
                     lista.push(listaTotal[i]);
-                    listaTotal.splice(i, 1)
+                    listaTotal.splice(i, 1);
                 }
             }  
             while (lista.length < nivel);
+            var nivelDiv = document.getElementById("elegirNivel");
+            nivelDiv.setAttribute("class", "none");
             obtenerPregunta();
         }
 
         function obtenerPregunta() {
+            //
+            var celda0 = document.getElementById("celda0");
+            if (celda0.childNodes[0] != null && celda0.childNodes[0] != undefined) {
+                celda0.removeChild(celda0.childNodes[0]);
+                var celda1 = document.getElementById("celda1");
+                celda1.removeChild(celda1.childNodes[0]);
+                var celda2 = document.getElementById("celda2");
+                celda2.removeChild(celda2.childNodes[0]);
+            }
+            //
             posicionInput = posicionAleatoria() - 1;
             var celda0 = document.getElementById("celda0");
             var celda1 = document.getElementById("celda1");
@@ -90,27 +114,37 @@
                     localStorage.setItem("acertadas", estrellasAcertadas);
                 }
             } else {
+                preguntasAcertadas = 0;
                 console.log(false);
             }
+
             console.log(value, 'valor de input')
-            var celda0 = document.getElementById("celda0");
+            /*var celda0 = document.getElementById("celda0");
             celda0.removeChild(celda0.childNodes[0]);
             var celda1 = document.getElementById("celda1");
             celda1.removeChild(celda1.childNodes[0]);
             var celda2 = document.getElementById("celda2");
-            celda2.removeChild(celda2.childNodes[0]);
+            celda2.removeChild(celda2.childNodes[0]);*/
             paso++;
             obtenerPregunta();
         }
     
-        function volver() {
-            window.location = '../index.html';
+        function cambioDeNivel() {
+            //window.location = '../index.html';
+            var nivelDiv = document.getElementById("elegirNivel");
+            nivelDiv.removeAttribute("class", "none");
         }
 
         function posicionAleatoria() {
             return Math.floor(Math.random() * 3) + 1;
         }
     </script>
+
+    <style>
+        .none {
+            display: none;
+        }
+    </style>
     
 </head>
 
@@ -128,7 +162,7 @@
         -->
         <div class="btn-container">
             <button type="button" class="btn btn-primary" onclick = "comprobar()">Comprueba</button>
-            <button type="button" class="btn btn-primary" onclick = "volver()">Cambia de nivel</button>
+            <button type="button" class="btn btn-primary" onclick = "cambioDeNivel()">Cambia de nivel</button>
         </div>
         <div class="tabla-container">
             <div>
@@ -139,6 +173,20 @@
                 <div id="celda1" class="col-4"></div>
                 <div id="celda2" class="col-4"></div>
             </div>
+        </div>
+
+        <div class="elegir-nivel none" id="elegirNivel">
+            <div class="titulo">
+                <p>Elige el numero de verbos</p>
+            </div>
+          <button type="button" class="btn btn-primary" onclick = "obtenerNivel(20)">20</button>
+          <button type="button" class="btn btn-primary" onclick = "obtenerNivel(30)">30</button>
+          <button type="button" class="btn btn-primary" onclick = "obtenerNivel(40)">40</button>
+          <button type="button" class="btn btn-primary" onclick = "obtenerNivel(50)">50</button>
+          <button type="button" class="btn btn-primary" onclick = "obtenerNivel(60)">60</button>
+          <button type="button" class="btn btn-primary" onclick = "obtenerNivel(70)">70</button>
+          <button type="button" class="btn btn-primary" onclick = "obtenerNivel(80)">80</button>
+          <button type="button" class="btn btn-primary" onclick = "obtenerNivel(140)">140</button>
         </div>
         
     </div>
