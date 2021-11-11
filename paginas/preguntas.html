@@ -29,24 +29,23 @@
         }
 
         function obtenerNivel(valor) {
-            var copiaListaTotal = Object.assign([], listaTotal);
+            var i;
             lista = [];
             if (valor == null) {
                 nivel = new URLSearchParams(location.search).get('nivel');
             } else {
                 nivel = valor;
             }
-            
+
             document.getElementById("titulo").innerHTML = "Nivel: " + nivel;
             tabla = document.getElementById("tabla");
-            do {
-                const i = Math.floor(Math.random() * copiaListaTotal.length) + 1;
-                if (i != undefined && copiaListaTotal[i] != undefined) {
-                    lista.push(copiaListaTotal[i]);
-                    copiaListaTotal.splice(i, 1);
-                }
-            }  
-            while (lista.length < nivel);
+
+            for(i = 0; i < nivel; i++) {
+                lista.push(listaTotal[i]);
+            }
+
+            lista.sort(function() { return Math.random() - 0.5 });
+            
             var nivelDiv = document.getElementById("elegirNivel");
             nivelDiv.setAttribute("class", "none");
             obtenerPregunta();
