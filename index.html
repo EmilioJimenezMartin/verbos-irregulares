@@ -12,10 +12,15 @@
             window.location = './paginas/preguntas.html?nivel=' + cantidad;
         }
     </script>
+    <style>
+        button  {
+            width: 100%;
+        }
+    </style>
 </head>
 
 <body>
-      <div class="contenedor">
+      <div class="contenedor container">
         <div class="header">
             <p>Lista de verbos irregulares</p>
         </div>
@@ -23,14 +28,33 @@
             <div class="titulo">
                 <p>Elige el numero de verbos</p>
             </div>
-          <button type="button" class="btn btn-primary" onclick = "seleccionarNivel(20)">20</button>
-          <button type="button" class="btn btn-primary" onclick = "seleccionarNivel(30)">30</button>
-          <button type="button" class="btn btn-primary" onclick = "seleccionarNivel(40)">40</button>
-          <button type="button" class="btn btn-primary" onclick = "seleccionarNivel(50)">50</button>
-          <button type="button" class="btn btn-primary" onclick = "seleccionarNivel(60)">60</button>
-          <button type="button" class="btn btn-primary" onclick = "seleccionarNivel(70)">70</button>
-          <button type="button" class="btn btn-primary" onclick = "seleccionarNivel(80)">80</button>
-          <button type="button" class="btn btn-primary" onclick = "seleccionarNivel(140)">140</button>
+            <div class="row">
+                <div class="col-3 p-2">
+                    <button type="button" class="btn btn-primary" onclick = "seleccionarNivel(20)">20</button>
+                </div>
+                <div class="col-3 p-2">
+                    <button type="button" class="btn btn-primary" onclick = "seleccionarNivel(30)">30</button>
+                </div>
+                <div class="col-3 p-2">
+                    <button type="button" class="btn btn-primary" onclick = "seleccionarNivel(40)">40</button>
+                </div>
+                <div class="col-3 p-2">
+                    <button type="button" class="btn btn-primary" onclick = "seleccionarNivel(50)">50</button>
+                </div>
+                <div class="col-3 p-2">
+                    <button type="button" class="btn btn-primary" onclick = "seleccionarNivel(60)">60</button>
+                </div>
+                <div class="col-3 p-2">
+                    <button type="button" class="btn btn-primary" onclick = "seleccionarNivel(70)">70</button>
+                </div>
+                <div class="col-3 p-2">
+                    <button type="button" class="btn btn-primary" onclick = "seleccionarNivel(80)">80</button>
+                </div>
+                <div class="col-3 p-2">
+                    <button type="button" class="btn btn-primary" onclick = "seleccionarNivel(140)">140</button>
+                </div>
+            </div>
+          
         </div>
       </div>
      

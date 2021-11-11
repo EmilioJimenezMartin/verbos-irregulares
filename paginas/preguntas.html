@@ -34,7 +34,7 @@
             // inicializa las estrellas acertadas conforme a lo guardado en local storage
             estrellasAcertadas = localStorage.getItem("acertadas");
 
-            // iguala preguntas acertadas con estrellas para saber desde donde empezamos
+            // iguala preguntas acertadas con estrellas para saber desde donde empezamos y no empezar siempre de 0
             preguntasAcertadas = estrellasAcertadas;
 
             //referencia a documento html del boton de elegir nivel
@@ -64,7 +64,7 @@
                     showClear:false,
                     stars: 10,
                     min: 0,
-                    max: nivel / 2,
+                    max: nivel,
                     step: 0.5,
                      });
             // Metodo para dotar de valor inicial de estrellas
@@ -217,6 +217,43 @@
         .none {
             display: none;
         }
+        .row .col-3 button  {
+            width: 100%;
+        }
+        .tabla input {
+            width: 100%;
+            height: 100%;
+        }
+        .tabla {
+            background-color: #FAB216;
+        }
+        .tabla p {
+            color: white;
+            font-weight: bold;
+            text-align: center;
+        }
+        #respuesta, .titulo{
+            text-align: center;
+            font-weight: bold;
+            margin: 0;
+            background-color: #ECEBE9;
+        }
+        .btn-container {
+            margin: 22px 0;
+        }
+        .btn-container button  {
+            display: block;
+            margin: auto;
+        }
+        .estrellas, .cabecera {
+            background-color: #763AF5;
+        }
+        .cabecera {
+            margin: 0;
+            text-align: center;
+            font-weight: bold;
+            color: #F5DE3A;
+        }
 
     </style>
     
@@ -224,15 +261,15 @@
 
 <body>
     <div class="contenedor">
-        <input id="input-id" type="text" class="rating" data-size="lg" data-min="0" data-step="1" >
-
         <div class="header">
-            <p id="titulo">Nivel</p>
+            <p class="cabecera" id="titulo">Nivel</p>
+            <p class="titulo">Test de verbos irregulares</p>
         </div>
-        <div class="btn-container">
-            <button type="button" class="btn btn-primary" onclick = "comprobar()" id="comprobar">Comprueba</button>
-            <button type="button" class="btn btn-primary" onclick = "cambioDeNivel()">Cambia de nivel</button>
+
+        <div class="estrellas">
+            <input id="input-id" type="text" class="rating" data-size="sm" data-min="0" data-step="1" >
         </div>
+        
         <div class="tabla-container">
             <div>
                 <p id="respuesta"></p>
@@ -244,20 +281,46 @@
             </div>
         </div>
 
-        <div class="elegir-nivel none" id="elegirNivel">
-            <div class="titulo">
-                <p>Elige el numero de verbos</p>
+        <div class="btn-container">
+            <div class="p-1">
+                <button type="button" class="btn btn-primary" onclick = "comprobar()" id="comprobar">Comprueba</button>
             </div>
-          <button type="button" class="btn btn-primary" onclick = "obtenerNivel(20)">20</button>
-          <button type="button" class="btn btn-primary" onclick = "obtenerNivel(30)">30</button>
-          <button type="button" class="btn btn-primary" onclick = "obtenerNivel(40)">40</button>
-          <button type="button" class="btn btn-primary" onclick = "obtenerNivel(50)">50</button>
-          <button type="button" class="btn btn-primary" onclick = "obtenerNivel(60)">60</button>
-          <button type="button" class="btn btn-primary" onclick = "obtenerNivel(70)">70</button>
-          <button type="button" class="btn btn-primary" onclick = "obtenerNivel(80)">80</button>
-          <button type="button" class="btn btn-primary" onclick = "obtenerNivel(140)">140</button>
+            <div class="p-1">
+                <button type="button" class="btn btn-primary" onclick = "cambioDeNivel()">Cambia de nivel</button>
+            </div>
         </div>
-        
+
+        <div class="elegir-nivel none container" id="elegirNivel">
+            <div>
+                <p class="titulo">Elige el numero de verbos</p>
+            </div>
+            <div class="row">
+                <div class="col-3 p-2">
+                    <button type="button" class="btn btn-primary" onclick = "obtenerNivel(20)">20</button>
+                </div>
+                <div class="col-3 p-2">
+                    <button type="button" class="btn btn-primary" onclick = "obtenerNivel(30)">30</button>
+                </div>
+                <div class="col-3 p-2">
+                    <button type="button" class="btn btn-primary" onclick = "obtenerNivel(40)">40</button>
+                </div>
+                <div class="col-3 p-2">
+                    <button type="button" class="btn btn-primary" onclick = "obtenerNivel(50)">50</button>
+                </div>
+                <div class="col-3 p-2">
+                    <button type="button" class="btn btn-primary" onclick = "obtenerNivel(60)">60</button>
+                </div>
+                <div class="col-3 p-2">
+                    <button type="button" class="btn btn-primary" onclick = "obtenerNivel(70)">70</button>
+                </div>
+                <div class="col-3 p-2">
+                    <button type="button" class="btn btn-primary" onclick = "obtenerNivel(80)">80</button>
+                </div>
+                <div class="col-3 p-2">
+                    <button type="button" class="btn btn-primary" onclick = "obtenerNivel(140)">140</button>
+                </div>
+            </div>      
+        </div>
     </div>
 </body>
 </html>
