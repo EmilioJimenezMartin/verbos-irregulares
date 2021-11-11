@@ -30,10 +30,8 @@
         var listaTotal = devolverVerbos();
 
         window.onload = function() {
-            var inputEstrellas = document.getElementById("input-id");
-            inputEstrellas = document.getElementById("input-id");
-            preguntasAcertadas = 0;
             estrellasAcertadas = localStorage.getItem("acertadas");
+            preguntasAcertadas = estrellasAcertadas;
             elegirNivel = document.getElementById("elegirNivel");
             
             if (estrellasAcertadas == null || estrellasAcertadas == undefined) {
@@ -170,7 +168,7 @@
                  }, 3000);
             } else {
                 // Reseteo de estrellas
-                $('#input-id').rating('update', preguntasAcertadas);
+                $('#input-id').rating('update', estrellasAcertadas);
                 // Cambio de boton a rojo
                 btnCheck.setAttribute("class", "btn btn-danger");
                 btnCheck.innerHTML = "MAL";
@@ -196,8 +194,7 @@
 
 <body>
     <div class="contenedor">
-        <input id="input-id" type="text" class="rating" data-size="lg" data-min="0"
-         data-step="1" >
+        <input id="input-id" type="text" class="rating" data-size="lg" data-min="0" data-step="1" >
 
         <div class="header">
             <p id="titulo">Nivel</p>
