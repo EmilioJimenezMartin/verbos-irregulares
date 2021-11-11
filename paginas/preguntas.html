@@ -66,6 +66,9 @@
                     min: 0,
                     max: nivel,
                     step: 0.5,
+                    mouseEnabled: false,
+                    keyboardEnabled: false,
+                    disabled: true
                      });
             // Metodo para dotar de valor inicial de estrellas
             $('#input-id').rating('update', estrellasAcertadas);
@@ -77,6 +80,7 @@
             for(i = 0; i < nivel; i++) {
                 lista.push(listaTotal[i]);
             }
+            console.log(lista, 'lista')
 
             // Desordena la lista
             lista.sort(function() { return Math.random() - 0.5 });
@@ -267,7 +271,7 @@
         </div>
 
         <div class="estrellas">
-            <input id="input-id" type="text" class="rating" data-size="sm" data-min="0" data-step="1" >
+            <input id="input-id" type="text" class="rating" data-size="sm" data-min="0" data-step="1" mouse-enabled="false" >
         </div>
         
         <div class="tabla-container">
